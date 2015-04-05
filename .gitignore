@@ -17,15 +17,20 @@ dashboard/
 *local*
 *secret*
 .aws-credentials
+.s3cfg*
 #unsure
 .goaccessrc
 #junk
 [A-Z]*
-*history*
-*_hist
-_histoqueries
 .psql-shortcuts
 .CFUserTextEncoding
 .Trash
 .crontab
 .dogrc
+.rnd
+.pvrep.yml
+#contains possibly sensitive history
+.viminfo
+*history*
+*_hist
+_histoqueries
