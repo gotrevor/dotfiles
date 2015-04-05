@@ -20,6 +20,7 @@ xcode_*
 .netrc
 .papertrail.yml
 /.dogwatch*
+/.aws
 #unsure
 .goaccessrc
 .psqlrc*
