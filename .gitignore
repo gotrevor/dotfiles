@@ -42,8 +42,9 @@ xcode_*
 /.stager
 /.travis
 /.heroku
-#I don't care about subversion
+#I don't care about subversion, zsh
 /.subversion
+/.zsh
 #contains possibly sensitive history
 .viminfo
 *history*
