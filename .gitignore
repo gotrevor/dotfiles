@@ -42,6 +42,11 @@ xcode_*
 /.stager
 /.travis
 /.heroku
+/.gitignore.d
+/.config
+/.cups
+/.mitmproxy
+/.install_markers
 #I don't care about subversion, zsh
 /.subversion
 /.zsh
@@ -55,3 +60,5 @@ xcode_*
 /.datadog-agent
 /.rvm
 /.gem
+/.cpan
+/.android
