@@ -1,0 +1,19 @@
+# project file for Aptana Studio
+.project
+# vi recovery files
+.*.sw[op]
+# emacs flotsam
+*~
+# xcocde stuff
+*.xcodeproj
+#*.xcuserstate
+xcode_*
+.DS_Store
+*.bak
+dashboard/
+.rspec
+.pgpass
+*local
+*secret*
+[A-Z]*
+*history*
