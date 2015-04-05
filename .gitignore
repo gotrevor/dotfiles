@@ -47,15 +47,18 @@ xcode_*
 /.cups
 /.mitmproxy
 /.install_markers
+/.sqlworkbench
 #I don't care about subversion, zsh
 /.subversion
 /.zsh
 #contains possibly sensitive history
+/.ssh
 .viminfo
 *history*
 *hist
 *_histoqueries
 .lesshst
+.redshift_utils_config
 #application put itself in root
 /.datadog-agent
 /.rvm
