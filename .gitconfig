@@ -1,0 +1,30 @@
+[include]
+	path = ~/.gitconfig.local
+[core]
+	excludesfile = ~/.gitignore_global
+	whitespace = trailing-space,space-before-tab
+[diff]
+	mnemonicprefix = true
+[color]
+  ui = auto
+[alias]
+  co = checkout
+  a = add
+  ci = commit
+  b = branch
+  pwb = !git branch --list | grep '^*' | awk '{ print $2 }' # print working branch
+  m = merge
+  s = status
+  l = log --pretty=oneline --abbrev-commit --graph --decorate
+  unstage = reset HEAD
+  staged = diff --cached
+  unstaged = diff
+  ss = status -s
+[push]
+	default = simple
+[log]
+	date = local
+[init]
+	templatedir = ~/.git-templates
+[web]
+	browser = open

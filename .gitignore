@@ -19,9 +19,11 @@ xcode_*
 .s3cfg*
 .netrc
 .papertrail.yml
+/.dogwatch*
 #unsure
 .goaccessrc
 .psqlrc*
+/.chef
 #junk
 /[A-Z]*
 .psql-shortcuts
@@ -33,9 +35,21 @@ xcode_*
 .pvrep.yml
 .gitk
 .mrconfig
+/.workflow-tools
+/.pip
+/.fma-tools
+/.stager
+/.travis
+/.heroku
+#I don't care about subversion
+/.subversion
 #contains possibly sensitive history
 .viminfo
 *history*
 *hist
 *_histoqueries
 .lesshst
+#application put itself in root
+/.datadog-agent
+/.rvm
+/.gem
