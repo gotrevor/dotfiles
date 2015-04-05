@@ -10,7 +10,6 @@
 xcode_*
 .DS_Store
 *.bak
-dashboard/
 .rspec
 #secrets
 .pgpass
@@ -18,10 +17,13 @@ dashboard/
 *secret*
 .aws-credentials
 .s3cfg*
+.netrc
+.papertrail.yml
 #unsure
 .goaccessrc
+.psqlrc*
 #junk
-[A-Z]*
+/[A-Z]*
 .psql-shortcuts
 .CFUserTextEncoding
 .Trash
@@ -29,8 +31,11 @@ dashboard/
 .dogrc
 .rnd
 .pvrep.yml
+.gitk
+.mrconfig
 #contains possibly sensitive history
 .viminfo
 *history*
-*_hist
-_histoqueries
+*hist
+*_histoqueries
+.lesshst
