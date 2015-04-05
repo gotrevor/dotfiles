@@ -17,6 +17,8 @@ dashboard/
 *local*
 *secret*
 .aws-credentials
+#unsure
+.goaccessrc
 #junk
 [A-Z]*
 *history*
