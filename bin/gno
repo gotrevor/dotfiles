@@ -1,0 +1,3 @@
+#git merge-base master `git pwb`
+git diff `git merge-base master $(git pwb)` --name-only | more
+#git diff master...`git pwb` --name-only | more
