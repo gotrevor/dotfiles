@@ -73,7 +73,10 @@ xcode_*
 /.rbx
 /.rssowl2
 /.emacs.d/.cask
+/macports
+/php
 #Mac Junk
+/Applications
 /Box Documents
 /Box
 /Desktop
@@ -82,6 +85,8 @@ xcode_*
 /Library
 /Music
 /Pictures
+/Public
+/Sites
 #other misc stuff
 /dl
 /dotfiles
