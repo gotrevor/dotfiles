@@ -26,7 +26,6 @@ xcode_*
 .psqlrc*
 /.chef
 #junk
-/[A-Z]*
 .psql-shortcuts
 .CFUserTextEncoding
 .Trash
@@ -74,3 +73,33 @@ xcode_*
 /.rbx
 /.rssowl2
 /.emacs.d/.cask
+#Mac Junk
+/Box Documents
+/Box
+/Desktop
+/Documents
+/Downloads
+/Library
+/Music
+/Pictures
+#other misc stuff
+/dl
+/dotfiles
+/backups
+/fork
+/hack
+/links
+/model.sql
+/old
+/perl5
+/personal
+/pgadmin.log
+/repos
+/sandbox
+/sdk
+/third
+/tmp
+/work
+/x.txt
+/x
+/x2

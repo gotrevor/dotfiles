@@ -1,0 +1,2 @@
+git b | grep -i $* \
+ | sed "s/^[*] //"
