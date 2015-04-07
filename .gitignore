@@ -65,3 +65,12 @@ xcode_*
 /.gem
 /.cpan
 /.android
+# from old laptop
+/.accurev
+/.GoPanda*
+/.cache
+/.composer
+/.npm
+/.rbx
+/.rssowl2
+/.emacs.d/.cask
