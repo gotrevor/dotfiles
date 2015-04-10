@@ -2,6 +2,8 @@
 map ,# :s/^/#/<CR>
 call pathogen#infect()
 filetype plugin indent on
+set foldmethod=syntax
+nnoremap <Space> za
 syntax on
 " set number
 set ts=2

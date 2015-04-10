@@ -193,3 +193,7 @@ function tjm-pg-whack-logs() {
 function rbgrep() {
   grep -r "$@" * --include=*.rb --include=*.erb ;
 }
+
+alias agl='ag --pager="less -r"'
+
+. ~/.profile.local
