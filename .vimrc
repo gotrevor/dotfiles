@@ -17,6 +17,13 @@ set scrolloff=7
 nmap <F2> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 imap <F2> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
+" From: http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns
+" Also: http://blog.ezyang.com/2010/03/vim-textwidth/
+" augroup vimrc_auocmds
+highlight OverLength ctermbg=red guibg=#592929
+match OverLength /\%111v.\+/
+" augroup END
+
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
