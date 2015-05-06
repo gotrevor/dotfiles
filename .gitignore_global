@@ -1,3 +1,7 @@
+# rubocop
+.rubocop.yml
+.rubocop_todo.yml
+# ag
 .agignore
 # project file for Aptana Studio
 .project
