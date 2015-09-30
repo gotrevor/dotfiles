@@ -7,7 +7,7 @@ export PATH=$PATH:$AWS_RDS_HOME/bin
 export EDITOR=vi
 # "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 export PGDATA=/usr/local/var/postgres
-export PATH=$PATH:~/bin
+export PATH=~/bin:$PATH
 
 
 export AWSRB=pry
@@ -197,3 +197,18 @@ function rbgrep() {
 alias agl='ag --pager="less -r"'
 
 . ~/.profile.local
+
+function cfm() {
+  cfstager show | grep $USER | sed "s/   */  /g" | sed "s/ *$//"
+}
+
+function apimap ()
+{
+  knife ssh -x $USER -a fqdn "chef_environment:data_api_production AND tags:data_api" "$@"
+}
+
+alias cddar="cd ~/work/data-api-ruby"
+alias cdda="cd ~/work/data-api"
+alias cdaa="cd ~/work/analytics_api"
+alias cda="cd ~/work/aso-data-processor"
+alias cdad="cd ~/work/rtb-p13n-data-processor"
