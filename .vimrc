@@ -10,6 +10,8 @@ set ts=2
 set shiftwidth=2
 set expandtab
 set mouse=a
+set ruler
+:set smartcase
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 " set clipboard=unnamed
