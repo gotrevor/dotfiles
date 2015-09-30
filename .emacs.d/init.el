@@ -1,3 +1,13 @@
+(linum-mode)
+(column-number-mode)
+;;; (setq column-number-mode t)
+
+(add-to-list 'load-path "~/.emacs.d/ws-trim/")
+(require 'ws-trim)
+(global-ws-trim-mode t)
+
+(add-to-list 'default-frame-alist '(foreground-color . "#E0DFDB"))
+(add-to-list 'default-frame-alist '(background-color . "#102372"))
 (add-to-list 'load-path "~/third/rspec-mode")
 (require 'rspec-mode)
 
@@ -33,7 +43,9 @@
 (require 'package)
 (setq package-archives
 '(("gnu" . "http://elpa.gnu.org/packages/")
-("marmalade" . "http://marmalade-repo.org/packages/")))
+  ("marmalade" . "http://marmalade-repo.org/packages/")))
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 ;;; Making things pretty
