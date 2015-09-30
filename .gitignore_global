@@ -16,3 +16,4 @@ xcode_*
 *.bak
 .rspec
 scratch/
+.staging-host

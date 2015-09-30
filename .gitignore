@@ -35,6 +35,7 @@ xcode_*
 .pvrep.yml
 .gitk
 .mrconfig
+.staging-host
 /.workflow-tools
 /.pip
 /.fma-tools
@@ -108,3 +109,4 @@ xcode_*
 /x.txt
 /x
 /x2
+/.db_suffix
