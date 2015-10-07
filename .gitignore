@@ -110,3 +110,8 @@ xcode_*
 /x
 /x2
 /.db_suffix
+/staging
+/.oracle_jre_usage
+/.emacs.d/elpa/
+/.emacs.d/ws-trim/
+/.gnupg/
