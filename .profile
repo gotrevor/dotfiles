@@ -219,7 +219,8 @@ ruby -e "require 'active_support'; require 'active_support/core_ext'; puts ARGV[
 
 function rr()
 {
-  rails r $(rr_cmd "$@")
+  echo bundle exec rails runner $(rr_cmd "$@")
+  bundle exec rails runner $(rr_cmd "$@")
 }
 
 
