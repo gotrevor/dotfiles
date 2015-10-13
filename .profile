@@ -179,7 +179,6 @@ alias em=emacs
 export CLICOLOR=1
 #export LS_COLORS=1
 
-alias rr="rake rubocop"
 source $HOME/.psql-shortcuts
 
 function tjm-pg-whack-logs() {
@@ -212,3 +211,16 @@ alias cdda="cd ~/work/data-api"
 alias cdaa="cd ~/work/analytics_api"
 alias cda="cd ~/work/aso-data-processor"
 alias cdad="cd ~/work/rtb-p13n-data-processor"
+
+function rr_cmd()
+{
+ruby -e "require 'active_support'; require 'active_support/core_ext'; puts ARGV[0].split('/')[-2..-1].map(&:camelize).join('::').gsub(/[.]rb$/,'') << '.run'" "$@"
+}
+
+function rr()
+{
+  rails r $(rr_cmd "$@")
+}
+
+
+# alias rr="rake rubocop"

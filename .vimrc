@@ -11,6 +11,7 @@ set shiftwidth=2
 set expandtab
 set mouse=a
 set ruler
+set nu
 :set smartcase
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>

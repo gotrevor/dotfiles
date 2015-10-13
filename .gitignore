@@ -2,6 +2,7 @@
 .project
 # vi recovery files
 .*.sw[op]
+.sw[op]
 # emacs flotsam
 *~
 # xcocde stuff

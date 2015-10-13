@@ -7,13 +7,17 @@
 .project
 # vi recovery files
 .*.sw[op]
+.sw[op]
 # emacs flotsam
 *~
-# xcocde stuff
+# xcode stuff
 *.xcodeproj
 xcode_*
 .DS_Store
 *.bak
+# rspec
 .rspec
+# scratchpad
 scratch/
+# local pointer to staging host
 .staging-host
