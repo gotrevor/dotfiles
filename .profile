@@ -224,4 +224,5 @@ function rr()
 }
 
 
+alias wf="time \wf"
 # alias rr="rake rubocop"
