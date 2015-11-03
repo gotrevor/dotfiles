@@ -21,3 +21,5 @@ xcode_*
 scratch/
 # local pointer to staging host
 .staging-host
+# nohup.out
+nohup.out

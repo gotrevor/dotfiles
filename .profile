@@ -1,14 +1,11 @@
 # ~/.profile
+export PATH=~/bin:$PATH
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export AWS_RDS_HOME=$HOME/dl/RDSCli-1.15.001
 export PATH=$PATH:$AWS_RDS_HOME/bin
 
-export EDITOR=vi
-# "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 export PGDATA=/usr/local/var/postgres
-export PATH=~/bin:$PATH
-
 
 export AWSRB=pry
 
@@ -211,6 +208,10 @@ alias cdda="cd ~/work/data-api"
 alias cdaa="cd ~/work/analytics_api"
 alias cda="cd ~/work/aso-data-processor"
 alias cdad="cd ~/work/rtb-p13n-data-processor"
+alias cdd="cd ~/work/dogwatch/"
+alias cdro="cd ~/work/rtb-opt/"
+alias cdroe="cd ~/work/rtb-opt-engine/"
+
 
 function rr_cmd()
 {
@@ -226,3 +227,37 @@ function rr()
 
 alias wf="time \wf"
 # alias rr="rake rubocop"
+
+function gsm()
+{
+  git ss | egrep "^( M|M |MM)" | sed s/..//
+}
+
+function gsms()
+{
+  gsm | grep _spec.rb$
+}
+
+alias :e=vi
+
+function analytics_naf_egrep {
+  analytics_runner_map 'egrep -r '"$@"' /var/log/naf/*/*/naf/jobs'
+}
+
+function e {
+  emacsclient -t -a "" "$@"
+}
+export -f e
+
+function ec {
+    (nohup emacsclient -c -a "" "$@" &) 2> /dev/null
+}
+export -f ec
+# emacs --daemon
+
+export EDITOR=vi
+export EDITOR=e
+# "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+
+export RTB_OPT_CONFIG=~/.rtb_opt_config
+export TMPDIR=/mnt/tmp

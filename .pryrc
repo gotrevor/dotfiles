@@ -1,4 +1,4 @@
-require 'awesome_print'
+# require 'awesome_print'
 if defined?(PryDebugger) || defined?(PryByebug)
   Pry.commands.alias_command 'c', 'continue'
   Pry.commands.alias_command 's', 'step'
