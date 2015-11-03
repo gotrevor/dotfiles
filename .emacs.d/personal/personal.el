@@ -48,3 +48,5 @@
 ;;(global-set-key (kbd "C-c s") 'hs-show-block)
 
 (set global-semantic-tag-folding-mode 1)
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)

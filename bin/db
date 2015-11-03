@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative 'ruby_classes/db'
+
+DB.new.main
