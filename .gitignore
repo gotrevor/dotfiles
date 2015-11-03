@@ -116,3 +116,10 @@ xcode_*
 /.emacs.d/elpa/
 /.emacs.d/ws-trim/
 /.gnupg/
+/.emacs.d/
+.emacs.d.pre-prelude.tar
+.gradle
+.rtb_opt_config
+.sbt
+.ivy2
+.redshift_utils_config_DEV/
