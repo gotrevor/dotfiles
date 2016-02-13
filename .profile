@@ -1,3 +1,14 @@
+START_TIME=$(gdate +%s%N)
+function echo_elapsed_time {
+  NOW_TIME=$(gdate +%s%N)
+  printf "%12s " $((NOW_TIME - START_TIME))
+  echo "$@"
+}
+function echo_elapsed_time {
+  :
+}
+
+echo_elapsed_time foo1
 # ~/.profile
 export PATH=~/bin:$PATH
 
@@ -15,6 +26,8 @@ export AWS_ACCESS_KEY_ID=$AWSAccessKeyId
 export AWS_SECRET_ACCESS_KEY=$AWSSecretKey
 unset AWSAccessKeyId
 unset AWSSecretKey
+
+export REDSHIFT_CREDENTIALS="aws_access_key_id=$AWS_ACCESS_KEY_ID;aws_secret_access_key=$AWS_SECRET_ACCESS_KEY"
 
 # rspec will squelch output from tests unless you do this
 export SILENCE_STDOUT=false
@@ -55,6 +68,9 @@ setTerminalText() {
   echo -ne "\033]$mode;$@\007"
 }
 
+echo_elapsed_time foo4
+echo_elapsed_time foo5
+
 stt_both() { setTerminalText 0 $@; }
 stt_tab() { setTerminalText 1 $@; }
 stt_title() { setTerminalText 2 $@; }
@@ -93,14 +109,16 @@ tjm-git-short-prompt() {
  fi
 }
 
-
+echo_elapsed_time foopregit
 source ~/.git-completion.sh
+echo_elapsed_time foopostgit
 
 alias ssh_forward='pkill -f "ssh -f -N tools1"; ssh -f -N tools1'
 
 export LANG=C
 
 source ~/.preexec.bash
+echo_elapsed_time foo postexec
 
 preexec_impl() {
 #  stt_title `tjm-short-date`
@@ -127,7 +145,9 @@ export PS1="$PS1\n[\w] $ "
 export PROMPT_COMMAND='preexec() { true ; } && stt_tab "`pwd` `tjm-short-date`" && stt_title `tjm-short-date` && preexec() { preexec_impl ; }'
 #export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+echo_elapsed_time pre-complete konwn_hosts
 complete -W "$(sed -e "s/[ ,].*//g" ~/.ssh/known_hosts)" ssh scp
+echo_elapsed_time post-complete konwn_hosts
 
 # from: https://github.com/fiksu/freemyapps-android-app/wiki/Development-Environment-Setup
 export ANDROID_HOME=/sdk # for Bundle installs, must be the /sdk subdir
@@ -143,7 +163,9 @@ export LESS=' -R '
 # my own little helper
 complete -o default -W "uninstall install com.fiksu.fma.android" adb
 
-complete -W "$(brew list)" brew
+echo_elapsed_time pre brew listfoo
+# complete -W "$(brew list)" brew
+echo_elapsed_time post brew listfoo
 
 alias chrome='open -a "Google Chrome"'
 alias TRAVIS_ENDPOINT="--pro"
@@ -153,12 +175,16 @@ alias timer='date;echo $(($(date +%s)-$FMA_LAST_TIME)) seconds elapsed.;FMA_LAST
 
 GREP_OPTIONS=--line-buffered
 
+echo_elapsed_time pre complete
 complete -W 'alerts metrics' dogwatch
+echo_elapsed_time post complete
 
 alias be="bundle exec"
 alias bex="bundle exec"
 
+echo_elapsed_time pre profile.local
 source ~/.profile.local
+echo_elapsed_time post profile.local
 
 
 alias start-fake-dynamo='pushd ~/work/infrastructure; bundle exec fake_dynamo --port 4567 > /dev/null 2>&1 &; popd'
@@ -176,8 +202,13 @@ alias em=emacs
 export CLICOLOR=1
 #export LS_COLORS=1
 
+echo_elapsed_time pre sql short
 source $HOME/.psql-shortcuts
+echo_elapsed_time post sql short
 
+echo_elapsed_time foo
+
+echo_elapsed_time foo2
 function tjm-pg-whack-logs() {
   pushd /usr/local/var/postgres/pg_log
   rm postgresql-20*.log
@@ -190,9 +221,8 @@ function rbgrep() {
   grep -r "$@" * --include=*.rb --include=*.erb ;
 }
 
+echo_elapsed_time foo2
 alias agl='ag --pager="less -r"'
-
-. ~/.profile.local
 
 function cfm() {
   cfstager show | grep $USER | sed "s/   */  /g" | sed "s/ *$//"
@@ -202,20 +232,26 @@ function apimap ()
 {
   knife ssh -x $USER -a fqdn "chef_environment:data_api_production AND tags:data_api" "$@"
 }
+echo_elapsed_time foo2a
 
-alias cddar="cd ~/work/data-api-ruby"
-alias cdda="cd ~/work/data-api"
-alias cdaa="cd ~/work/analytics_api"
-alias cda="cd ~/work/aso-data-processor"
-alias cdad="cd ~/work/rtb-p13n-data-processor"
-alias cdd="cd ~/work/dogwatch/"
-alias cdro="cd ~/work/rtb-opt/"
-alias cdroe="cd ~/work/rtb-opt-engine/"
+alias cddar='cd ~/work/data-api-ruby'
+alias cdda='cd ~/work/data-api'
+alias cdaa='cd ~/work/analytics_api'
+alias cda='cd ~/work/aso-data-processor'
+alias cdad='cd ~/work/rtb-p13n-data-processor'
+alias cdd='cd ~/work/dogwatch/'
+alias cdro='cd ~/work/rtb-opt/'
+alias cdroe='cd ~/work/rtb-opt-engine/'
+alias cdrju='cd ~/work/rtb-java-utils/'
+alias cdra='cd ~/work/research-analysis/'
+alias cdwf='cd ~/work/workflow-tools/'
+alias cdwt='cd ~/work/workflow-tools/'
 
+echo_elapsed_time foo2b
 
 function rr_cmd()
 {
-ruby -e "require 'active_support'; require 'active_support/core_ext'; puts ARGV[0].split('/')[-2..-1].map(&:camelize).join('::').gsub(/[.]rb$/,'') << '.run'" "$@"
+  ruby -e "require 'active_support'; require 'active_support/core_ext'; puts ARGV[0].split('/')[-2..-1].map(&:camelize).join('::').gsub(/[.]rb$/,'') << '.run' #{ARGV[1..-1].join(' ')}" "$@"
 }
 
 function rr()
@@ -224,6 +260,7 @@ function rr()
   bundle exec rails runner $(rr_cmd "$@")
 }
 
+echo_elapsed_time foo2
 
 alias wf="time \wf"
 # alias rr="rake rubocop"
@@ -239,6 +276,7 @@ function gsms()
 }
 
 alias :e=vi
+echo_elapsed_time foo2
 
 function analytics_naf_egrep {
   analytics_runner_map 'egrep -r '"$@"' /var/log/naf/*/*/naf/jobs'
@@ -249,15 +287,18 @@ function e {
 }
 export -f e
 
+echo_elapsed_time foo2
 function ec {
     (nohup emacsclient -c -a "" "$@" &) 2> /dev/null
 }
 export -f ec
 # emacs --daemon
 
-export EDITOR=vi
 export EDITOR=e
+export EDITOR=vi
 # "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 
 export RTB_OPT_CONFIG=~/.rtb_opt_config
 export TMPDIR=/mnt/tmp
+
+echo_elapsed_time foo2

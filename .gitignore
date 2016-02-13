@@ -123,3 +123,6 @@ xcode_*
 .sbt
 .ivy2
 .redshift_utils_config_DEV/
+.fiksu/
+.parallel/
+.htoprc
