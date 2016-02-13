@@ -1,0 +1,1 @@
+ruby -e 'puts "$expires_on$#{Time.now.utc.to_i}$"'

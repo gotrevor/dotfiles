@@ -1,0 +1,5 @@
+# motivation for the echo:  http://stackoverflow.com/questions/7548926/git-and-the-branch-x-is-not-fully-merged-error
+echo \# This might be useful: $ git log --graph --left-right --cherry-pick --oneline master...\$\(git pwb\)
+git co master
+git b | grep -v " master$" | grep -v " production$" \
+  | sed "s/^/tjm-check-branch/" | sh

@@ -1,0 +1,19 @@
+#!/usr/bin/perl
+
+# http://blog.famzah.net/2010/04/08/auto-flush-both-stdout-and-stderr-in-perl/
+select(STDERR);
+$| = 1;
+select(STDOUT); # default
+$| = 1;
+
+# consider @perreal's answer here:
+# http://stackoverflow.com/questions/12297361/how-to-compress-4-consecutive-blank-lines-into-one-single-line-in-perl
+
+# inspired by: http://www.catonmat.net/download/perl1line.txt
+$prev = "nope";
+$prev2 = "nope";
+while (<>) {
+ print unless (($prev eq "\n") && ($prev2 eq "\n") && ($_ eq "\n"));
+ $prev2 = $prev;
+ $prev = $_;
+}

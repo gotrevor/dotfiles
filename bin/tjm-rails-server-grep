@@ -1,0 +1,2 @@
+rails server  |  grep --line-buffered -v "^Started GET ..assets.*-0[45]00$" | ~/bin/multi-lines-to-2
+

@@ -1,0 +1,6 @@
+time wf list -p all \
+  | grep -v "Merged to Master" \
+  | grep -v '| Blocked' \
+  | grep -v '| Ready' \
+  | grep -v '| Backlog' \
+  | grep -v 'Epic  | In Development' \

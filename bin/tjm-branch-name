@@ -1,0 +1,3 @@
+#/bin/bash
+cd ~/work/integ-tools/pvrep/
+./pvstory-branch-name $1 analytics

@@ -1,0 +1,4 @@
+open https://jira.fiksu.com/browse/$(
+  git pwb | sed "s/.*#//"
+)
+

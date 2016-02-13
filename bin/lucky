@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+open https://www.google.com/search?btnI=I\&q=$1

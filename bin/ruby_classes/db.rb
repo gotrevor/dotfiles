@@ -5,7 +5,6 @@ class DB
     fail 'db_abbr too short' unless db_abbr.length >= 3
     db_parsed = psql_for_db(db_abbr)
 
-
     #    puts psql_args
 
     do_psql(db_abbr, db_parsed)
@@ -15,7 +14,7 @@ class DB
 #  prod-rtb-data-rs.fiksu.com
 #  prod-analytics-rs.fiksu.com
 
-  def do_psql(db_abbr, db_parsed)
+  def do_psql(db_abbr, _db_parsed)
     hash =
       case db_abbr
       when 'app'
@@ -23,7 +22,8 @@ class DB
       when 'arp'
         { rc: "~/.psqlrc-rs", host: "prod-audience-data-rs.fiksu.com", port: "5439", db: "p13nproduction" }
       when 'arp_su'
-        { rc: "~/.psqlrc-rs", pwd: "${SECRET_PGPASSWORD_PERSONALIZATION_PROD}", host: "prod-audience-data-rs.fiksu.com",
+        { rc: "~/.psqlrc-rs", pwd: "${SECRET_PGPASSWORD_PERSONALIZATION_PROD}",
+          host: "prod-audience-data-rs.fiksu.com",
           db: "p13nproduction", port: "5439", user: "db_personalization_prod" }
       end
 
@@ -35,14 +35,6 @@ class DB
                 (hash[:port] ? ["-p", hash[:port]] : []) +
                 ["-d", hash[:db]] +
                 ["-U", (hash[:user] ? hash[:user] : ENV["USER"])]
-
-    psql = (hash[:pwd] ? "PGPASSWORD=#{hash[:pwd]} " : "") +
-           (hash[:rc] ? "PSQLRC=#{hash[:rc]} " : "") +
-           "psql " +
-           "-h #{hash[:host]} " +
-           (hash[:port] ? "-p #{hash[:port]} " : "") +
-           "-d #{hash[:db]} " +
-           (hash[:user] ? "-U #{hash[:user]} " : "-U #{ENV["USER"]} ")
 
     env_vars.each do |k, v|
       ENV[k.to_s.upcase] =

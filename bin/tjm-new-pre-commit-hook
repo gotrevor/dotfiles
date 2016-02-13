@@ -1,0 +1,4 @@
+# remove old hooks
+rm `find . -name 'pre-commit' | grep '.git/hooks/pre-commit'`
+# re-initialize all one level deep git repos.
+ls -1d */.git | sed "s/.git$//" | sed "s/^/pushd /" | sed "s/$/; git init; popd/" | sh

@@ -1,0 +1,4 @@
+#!/bin/bash
+source ~/.psql-shortcuts
+shopt -s expand_aliases
+psqlrsp_su -c "set query_group to 'superuser'; select * from STV_WLM_QUERY_STATE;"

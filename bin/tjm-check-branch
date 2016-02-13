@@ -1,0 +1,9 @@
+git co $1 &> /dev/null
+CHANGE_COUNT=$(git cherry -v master | wc -l)
+git co master &> /dev/null
+if [ $CHANGE_COUNT -eq 0 ]
+then
+  echo "git b -d $1"
+else
+  echo "# $1 has $CHANGE_COUNT change(s)"
+fi

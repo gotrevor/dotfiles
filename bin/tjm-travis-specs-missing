@@ -1,0 +1,10 @@
+diff <( ( ~/bin/tjm-ls-travis.sh ) | /bin/bash | sort ) <(find spec -type f | sort) \
+  | grep -v "^. spec.support" \
+  | grep -v "^. spec.helpers" \
+  | grep -v "spec_helper.rb$" \
+  | grep -v "factories.rb$" \
+  | grep -v "DS_Store$" \
+  | grep -v "~$" \
+  | grep -v "[.]swp$" \
+  | grep -Ev "^[0-9]+a[0-9]+,*[0-9]*$" \
+  | sed "s/> //"

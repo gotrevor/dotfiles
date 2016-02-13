@@ -1,0 +1,8 @@
+#!/bin/bash
+export RAILS_ENV=development
+
+#psqlrsd -d template1 -c "create database analytics_${USER}_${RAILS_ENV}"
+#psqlrsd -d template1 -c "drop database analytics_${USER}_${RAILS_ENV}" || exit
+#psqlrsd -d template1 -c "create database analytics_${USER}_${RAILS_ENV}" || exit
+#DB=redshift rake db:migrate || exit
+psqlrsd_su -f ~/sql/rs/tmorris.rs_views.sql || exit

@@ -1,0 +1,3 @@
+curl -u tmorris+api@fiksu.com:abc123 \
+  -d "idfa=931B6CAF-8649-441F-A7D0-1E903E3E8627" \
+  http://localhost:3000/api/user_device_ios_advertising_identifiers

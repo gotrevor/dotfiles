@@ -1,0 +1,17 @@
+psql -t -h localhost -U postgres -c "select datname from pg_database where datname not in (
+'template1',
+'template0',
+'ltv_local',
+'tracking_test',
+'postgres'
+)
+and datname not like 'tracking%'
+and datname not like 'createdb'
+and datname not like 'testaso'
+and datname not like 'asotest'
+and datname not like 'asotracking%'
+and datname not like 'summary%'
+and datname not like 'p13n%'
+and datname not like 'warehousing%'
+and datname not like 'primary%'" \
+| grep -v "^$"

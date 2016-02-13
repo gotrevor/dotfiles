@@ -1,0 +1,52 @@
+source ~/.psql-shortcuts
+shopt -s expand_aliases
+psqlarp_su $* -c "
+set query_group to 'superuser';
+SELECT
+  pid
+ ,query
+ ,total_used AS slots
+ ,trim(state) AS state
+ ,starttime
+ ,trim(label) AS "label"
+ ,trim(usename) AS usename, trim(text) AS text
+FROM (
+ SELECT swqs.xid, si.pid, swqs.task, swqs.query,
+  (swqs.slot_count::character varying::text || '/'::character varying::text) || swscc.num_query_tasks::character varying::text AS total_used,
+ swqs.service_class, si.starttime, swqs.state, swscc.queueing_strategy, swscc.query_working_mem,
+ swscc.name, pu.usename, si."label", si.text
+   FROM stv_wlm_query_state swqs
+   LEFT JOIN stv_wlm_service_class_config swscc ON swqs.service_class = swscc.service_class
+   FULL OUTER JOIN stv_inflight si ON si.query = swqs.query
+   LEFT JOIN pg_user pu ON si.userid = pu.usesysid
+) rs_activity_verbose
+  ORDER BY starttime, pid;"
+
+psqlarp_su $* -c "
+set query_group to 'superuser';
+SELECT *, round(queue_time / 1000.0 / 1000.0 / 60.0, 2) AS queue_minutes FROM STV_WLM_QUERY_QUEUE_STATE;
+"
+
+psqlarp_su -c "
+set query_group to 'superuser';
+SELECT * FROM rs_utils.rs_locks
+WHERE relation in (SELECT relation FROM rs_utils.rs_locks WHERE not granted)
+ORDER BY database, relation, granted DESC, mode, pid;
+"
+
+psqlarp_su -c "
+set query_group to 'superuser';
+SELECT
+  MAX(queue_seconds) AS queue_seconds,
+  MAX(commit_seconds) AS commit_seconds,
+  MAX(queuelen) AS queuelen
+FROM (
+  SELECT
+    DATEDIFF(ms, startqueue, startwork) / 1000.0 AS queue_seconds,
+    DATEDIFF(ms, startwork, endtime) / 1000.0 AS commit_seconds,
+    queuelen
+  FROM stl_commit_stats
+  WHERE endtime >= DATEADD(minute, -10, GETDATE())
+    AND startqueue >= DATEADD(day, -2, GETDATE())
+) as subq;
+"

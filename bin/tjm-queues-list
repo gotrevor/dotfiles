@@ -1,0 +1,3 @@
+# echo "try 'source $0' if you get errors."
+pushd ~/work/freemyapps-conversion-api
+FMA_ENV=production bundle exec bin/aws_admin.rb status | grep queue | sort

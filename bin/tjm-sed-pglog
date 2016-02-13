@@ -1,0 +1,11 @@
+# do something like cat po*.log | $0
+grep -v "ALTER TABLE" | \
+  less | grep -v "TRUNCATE TABLE" |
+  less | egrep -Ev "^[[:space:]]*$" |
+  less | perl -0pe 's/\n\t/ /g' |
+  sed -E "s/[[:space:]][[:space:]]*/ /g" | less |
+  sed "s/user=postgres,db=fma_test //" | less |
+  sed "s/ duration: [0-9][.][0-9]* ms//" |
+  grep -v "autovacuum" |
+  grep -v "automatic vacuum" | less |
+  sed "s/2013-11-01 \([0-9:]*\) EDT \[[0-9]*\]:/\1/" 

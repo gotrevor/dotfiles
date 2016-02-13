@@ -1,0 +1,9 @@
+open https://www.github.com/$( \
+  git remote -v | grep origin | sed "s/.*://" | grep "fetch.$" | sed "s/.git .fetch.$//" \
+)/tree/$( \
+  git tag | egrep '[0-9]{4}[_-][0-9]{2}' | grep -v RUBY-UPGRADE-2013 | tail -1 \
+)/$( \
+  git ls-tree --full-name --name-only HEAD | head -1 | sed "s/[^\/]*$//" \
+)$( \
+ echo $* | sed "s/:/#L/" \
+)
