@@ -239,6 +239,8 @@ alias cdda='cd ~/work/data-api'
 alias cdaa='cd ~/work/analytics_api'
 alias cda='cd ~/work/aso-data-processor'
 alias cdad='cd ~/work/rtb-p13n-data-processor'
+alias cdad_p='cd ~/prod/rtb-p13n-data-processor'
+alias cdad_s='cd ~/scratch/rtb-p13n-data-processor'
 alias cdd='cd ~/work/dogwatch/'
 alias cdro='cd ~/work/rtb-opt/'
 alias cdroe='cd ~/work/rtb-opt-engine/'
@@ -246,6 +248,7 @@ alias cdrju='cd ~/work/rtb-java-utils/'
 alias cdra='cd ~/work/research-analysis/'
 alias cdwf='cd ~/work/workflow-tools/'
 alias cdwt='cd ~/work/workflow-tools/'
+alias cdob='cd ~/work/optfile-browser/'
 
 echo_elapsed_time foo2b
 
@@ -282,10 +285,11 @@ function analytics_naf_egrep {
   analytics_runner_map 'egrep -r '"$@"' /var/log/naf/*/*/naf/jobs'
 }
 
-function e {
-  emacsclient -t -a "" "$@"
-}
-export -f e
+
+#function e {
+#  emacsclient -t -a "" "$@"
+#}
+#export -f e
 
 echo_elapsed_time foo2
 function ec {

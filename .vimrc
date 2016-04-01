@@ -1,10 +1,10 @@
 " from http://vim.wikia.com/wiki/VimTip271
 map ,# :s/^/#/<CR>
-call pathogen#infect()
 filetype plugin indent on
-set foldmethod=syntax
-nnoremap <Space> za
 syntax on
+set foldmethod=syntax
+call pathogen#infect()
+nnoremap <Space> za
 " set number
 set ts=2
 set shiftwidth=2
@@ -24,7 +24,7 @@ imap <F2> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 " Also: http://blog.ezyang.com/2010/03/vim-textwidth/
 " augroup vimrc_auocmds
 highlight OverLength ctermbg=red guibg=#592929
-match OverLength /\%129v.\+/
+match OverLength /\%130v.\+/
 " augroup END
 
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>

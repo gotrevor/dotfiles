@@ -1,1 +1,1 @@
-cd && wf list
+cd && wf list | grep -v "| Epic"
