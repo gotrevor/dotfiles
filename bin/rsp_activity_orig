@@ -1,0 +1,20 @@
+source ~/.psql-shortcuts
+shopt -s expand_aliases
+psqlrsp_su $* -c "
+set query_group to 'superuser';
+SELECT
+  pid
+ ,query
+ ,total_used AS slots
+ ,trim(state) AS state
+ ,starttime
+ ,trim(label) AS "label"
+ ,trim(usename) AS usename, trim(text) AS text
+FROM tmorris.rs_activity_verbose
+WHERE pid <> pg_backend_pid()
+  ORDER BY starttime, pid;"
+
+psqlrsp_su $* -c "
+set query_group to 'superuser';
+SELECT * FROM rs_utils.rs_locks WHERE NOT granted;
+"

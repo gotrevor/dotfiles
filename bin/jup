@@ -1,0 +1,2 @@
+cd ~/notes
+nohup ~/anaconda/bin/jupyter-notebook --port 8888 --port-retries 0 &

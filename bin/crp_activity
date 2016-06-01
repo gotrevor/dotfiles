@@ -21,14 +21,29 @@ FROM (
 
 psqlcrp_su $* -c "
 set query_group to 'superuser';
-SELECT * FROM STV_WLM_QUERY_QUEUE_STATE;
+SELECT *, round(queue_time / 1000.0 / 1000.0 / 60.0, 2) AS queue_minutes FROM STV_WLM_QUERY_QUEUE_STATE;
 "
 
 psqlcrp_su -c "
 set query_group to 'superuser';
 SELECT * FROM rs_utils.rs_locks
 WHERE relation in (SELECT relation FROM rs_utils.rs_locks WHERE not granted)
-ORDER BY database, relation, granted DESC, mode
---, pid
-;
+ORDER BY database, relation, granted DESC, mode, pid;
+"
+
+psqlcrp_su -c "
+set query_group to 'superuser';
+SELECT
+  MAX(queue_seconds) AS queue_seconds,
+  MAX(commit_seconds) AS commit_seconds,
+  MAX(queuelen) AS queuelen
+FROM (
+  SELECT
+    DATEDIFF(ms, startqueue, startwork) / 1000.0 AS queue_seconds,
+    DATEDIFF(ms, startwork, endtime) / 1000.0 AS commit_seconds,
+    queuelen
+  FROM stl_commit_stats
+  WHERE endtime >= DATEADD(minute, -10, GETDATE())
+    AND startqueue >= DATEADD(day, -2, GETDATE())
+) as subq;
 "

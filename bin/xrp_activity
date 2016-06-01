@@ -1,6 +1,6 @@
 source ~/.psql-shortcuts
 shopt -s expand_aliases
-psqlrsp_su $* -c "
+psqlxrp_su $* -c "
 set query_group to 'superuser';
 SELECT
   pid
@@ -22,19 +22,19 @@ FROM (
 ) rs_activity_verbose
   ORDER BY starttime, pid;"
 
-psqlrsp_su $* -c "
+psqlxrp_su $* -c "
 set query_group to 'superuser';
 SELECT *, round(queue_time / 1000.0 / 1000.0 / 60.0, 2) AS queue_minutes FROM STV_WLM_QUERY_QUEUE_STATE;
 "
 
-psqlrsp_su -c "
+psqlxrp_su -c "
 set query_group to 'superuser';
 SELECT * FROM rs_utils.rs_locks
 WHERE relation in (SELECT relation FROM rs_utils.rs_locks WHERE not granted)
 ORDER BY database, relation, granted DESC, mode, pid;
 "
 
-psqlrsp_su -c "
+psqlxrp_su -c "
 set query_group to 'superuser';
 SELECT
   MAX(queue_seconds) AS queue_seconds,

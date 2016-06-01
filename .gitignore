@@ -90,6 +90,7 @@ xcode_*
 /Public
 /Sites
 #other misc stuff
+/anaconda
 /dl
 /dotfiles
 /backups
@@ -126,3 +127,4 @@ xcode_*
 .fiksu/
 .parallel/
 .htoprc
+/src

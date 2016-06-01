@@ -1,10 +1,10 @@
 " from http://vim.wikia.com/wiki/VimTip271
 map ,# :s/^/#/<CR>
-filetype plugin indent on
-syntax on
-set foldmethod=syntax
 call pathogen#infect()
+filetype plugin indent on
+set foldmethod=syntax
 nnoremap <Space> za
+syntax on
 " set number
 set ts=2
 set shiftwidth=2
